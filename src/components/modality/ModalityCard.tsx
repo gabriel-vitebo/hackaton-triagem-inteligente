@@ -10,15 +10,15 @@ export function ModalityCard({ modality, onSelect }: ModalityCardProps) {
     <button
       type="button"
       onClick={onSelect}
-      className="panel-card flex h-full flex-col justify-between p-6 text-left transition hover:-translate-y-1 hover:border-emerald-400/30 hover:bg-white/10"
+      className="panel-card selectable-card flex h-full flex-col justify-between p-6 text-left"
     >
       <div>
-        <h3 className="text-xl font-bold text-white">{modality.label}</h3>
-        <p className="mt-3 text-sm leading-6 text-slate-300">
+        <h3 className="title-strong text-xl font-bold">{modality.label}</h3>
+        <p className="text-soft mt-3 text-sm leading-6">
           {modality.description}
         </p>
       </div>
-      <span className="mt-6 inline-flex text-sm font-semibold text-emerald-200">
+      <span className="mt-6 inline-flex text-sm font-semibold text-qb-primary">
         {modality.primaryCta}
       </span>
     </button>

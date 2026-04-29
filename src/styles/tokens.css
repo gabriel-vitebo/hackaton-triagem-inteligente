@@ -1,16 +1,25 @@
 :root {
   --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     "Segoe UI", sans-serif;
-  --color-bg: #020617;
-  --color-panel: rgba(255, 255, 255, 0.06);
-  --color-panel-strong: rgba(15, 23, 42, 0.82);
-  --color-border: rgba(255, 255, 255, 0.1);
-  --color-text: #f8fafc;
-  --color-text-soft: #cbd5e1;
-  --color-muted: #94a3b8;
-  --color-accent: #34d399;
-  --color-accent-strong: #10b981;
-  --shadow-panel: 0 24px 80px rgba(2, 6, 23, 0.32);
+  --color-primary-darkest: #0d2262;
+  --color-primary-dark: #143182;
+  --color-primary-pure: #304ffe;
+  --color-primary-light: #c9d9ff;
+  --color-primary-lightest: #edf2ff;
+  --color-secondary-pure: #304ffe;
+  --color-bg: #edf2ff;
+  --color-panel: rgba(255, 255, 255, 0.92);
+  --color-panel-strong: rgba(255, 255, 255, 0.98);
+  --color-border: rgba(20, 49, 130, 0.14);
+  --color-border-strong: rgba(48, 79, 254, 0.26);
+  --color-text: #0d2262;
+  --color-text-soft: #294174;
+  --color-muted: #5d6f9f;
+  --color-accent: #304ffe;
+  --color-accent-strong: #143182;
+  --color-on-accent: #f8fbff;
+  --shadow-panel: 0 24px 60px rgba(20, 49, 130, 0.12);
+  --shadow-soft: 0 12px 32px rgba(20, 49, 130, 0.08);
   --radius-panel: 1.5rem;
   --content-width: 80rem;
 }

@@ -24,35 +24,6 @@ import { LoadingOverlay } from "../components/feedback/LoadingOverlay";
 
 const SIMULATED_LOADING_MS = 900;
 
-function PendingFeaturePanel({
-  title,
-  onBack,
-  children,
-}: {
-  title: string;
-  onBack: () => void;
-  children?: string;
-}) {
-  return (
-    <section className="panel-card p-8">
-      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber-300">
-        Proxima etapa
-      </p>
-      <h2 className="mt-4 text-3xl font-bold text-white">{title}</h2>
-      <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-300">
-        {children ?? flowMessages.pendingFeatureBody}
-      </p>
-      <button
-        type="button"
-        onClick={onBack}
-        className="mt-6 inline-flex rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
-      >
-        Voltar para modalidades
-      </button>
-    </section>
-  );
-}
-
 export function App() {
   const [state, dispatch] = useReducer(flowReducer, initialFlowState);
 
@@ -88,14 +59,14 @@ export function App() {
 
   let content = (
     <section className="panel-card p-8">
-      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">
+      <p className="section-kicker">
         {homeCopy.scenariosTitle}
       </p>
-      <h2 className="mt-4 text-3xl font-bold text-white">{homeCopy.title}</h2>
-      <p className="mt-4 max-w-3xl text-sm leading-6 text-slate-300">
+      <h2 className="title-strong mt-4 text-3xl font-bold">{homeCopy.title}</h2>
+      <p className="text-soft mt-4 max-w-3xl text-sm leading-6">
         {homeCopy.scenariosBody}
       </p>
-      <p className="mt-3 max-w-3xl text-sm leading-6 text-emerald-200">
+      <p className="mt-3 max-w-3xl text-sm font-medium leading-6 text-qb-primary-dark">
         {homeCopy.benefit}
       </p>
       <div className="mt-8">

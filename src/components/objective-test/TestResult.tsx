@@ -24,32 +24,32 @@ export function TestResult({
 
   return (
     <section className="panel-card p-8">
-      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">
+      <p className="section-kicker">
         Resultado imediato
       </p>
-      <h2 className="mt-4 text-3xl font-bold text-white">{title}</h2>
-      <p className="mt-4 max-w-3xl text-sm leading-6 text-slate-300">{body}</p>
+      <h2 className="title-strong mt-4 text-3xl font-bold">{title}</h2>
+      <p className="text-soft mt-4 max-w-3xl text-sm leading-6">{body}</p>
 
       <div className="mt-8 grid gap-4 md:grid-cols-3">
-        <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+        <div className="metric-card">
+          <p className="text-muted text-xs font-semibold uppercase tracking-[0.18em]">
             Acertos
           </p>
-          <p className="mt-2 text-3xl font-black text-white">{result.score}</p>
+          <p className="title-strong mt-2 text-3xl font-black">{result.score}</p>
         </div>
-        <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+        <div className="metric-card">
+          <p className="text-muted text-xs font-semibold uppercase tracking-[0.18em]">
             Nota de corte
           </p>
-          <p className="mt-2 text-3xl font-black text-white">
+          <p className="title-strong mt-2 text-3xl font-black">
             {objectiveTestCutScore}
           </p>
         </div>
-        <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+        <div className="metric-card">
+          <p className="text-muted text-xs font-semibold uppercase tracking-[0.18em]">
             Status
           </p>
-          <p className="mt-2 text-xl font-bold text-white">
+          <p className="title-strong mt-2 text-xl font-bold">
             {result.passed ? "Aprovado para avancar" : "Etapa complementar"}
           </p>
         </div>
@@ -59,14 +59,14 @@ export function TestResult({
         <button
           type="button"
           onClick={onContinue}
-          className="rounded-2xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
+          className="btn-primary"
         >
           {cta}
         </button>
         <button
           type="button"
           onClick={onBack}
-          className="rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+          className="btn-secondary"
         >
           Refazer escolha de modalidade
         </button>

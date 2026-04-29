@@ -75,10 +75,10 @@ export function ObjectiveTest({
   return (
     <div>
       <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-medium text-slate-200">
+        <div className="status-banner font-medium">
           Progresso: {currentQuestionIndex + 1} / {questions.length}
         </div>
-        <div className="rounded-2xl border border-emerald-400/30 bg-emerald-400/10 px-4 py-3 text-sm font-semibold text-emerald-200">
+        <div className="status-banner selected-state font-semibold">
           Tempo decorrido: {formatElapsedTime(elapsedSeconds)}
         </div>
       </div>
@@ -92,7 +92,7 @@ export function ObjectiveTest({
       />
 
       {friendlyAlert && (
-        <div className="mt-4 rounded-2xl border border-amber-400/30 bg-amber-400/10 px-4 py-3 text-sm text-amber-100">
+        <div className="status-banner-warn mt-4">
           {friendlyAlert}
         </div>
       )}

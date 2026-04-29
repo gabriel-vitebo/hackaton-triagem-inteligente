@@ -11,13 +11,13 @@ export function ComplementaryEssayIntro({
 }: ComplementaryEssayIntroProps) {
   return (
     <section className="panel-card p-8">
-      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber-300">
+      <p className="section-kicker">
         Etapa complementar
       </p>
-      <h2 className="mt-4 text-3xl font-bold text-white">
+      <h2 className="title-strong mt-4 text-3xl font-bold">
         {flowMessages.fallbackTitle}
       </h2>
-      <p className="mt-4 max-w-3xl text-sm leading-6 text-slate-300">
+      <p className="text-soft mt-4 max-w-3xl text-sm leading-6">
         {flowMessages.fallbackBody}
       </p>
 
@@ -25,14 +25,14 @@ export function ComplementaryEssayIntro({
         <button
           type="button"
           onClick={onContinue}
-          className="rounded-2xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
+          className="btn-primary"
         >
           Iniciar redacao complementar
         </button>
         <button
           type="button"
           onClick={onBack}
-          className="rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+          className="btn-secondary"
         >
           Voltar para modalidades
         </button>
