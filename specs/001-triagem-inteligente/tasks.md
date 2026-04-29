@@ -90,10 +90,10 @@ description: "Task list for implementing the Triagem Inteligente React prototype
 
 - [x] T027 [P] [US3] Criar tela intermediária amigável para fallback de redação em `src/components/essay/ComplementaryEssayIntro.tsx`
 - [x] T028 [P] [US3] Criar formulário de redação com tema mockado, título, texto e envio em `src/components/essay/EssayForm.tsx`
-- [ ] T029 [US3] Implementar ramo `score < 5` para levar do resultado à introdução da redação complementar em `src/app/reducer.ts` e `src/app/flow.ts`
-- [ ] T030 [US3] Implementar fluxo direto de redação obrigatória ao selecionar cenário/faculdade correspondente em `src/app/App.tsx` e `src/components/modality/ModalitySelection.tsx`
-- [ ] T031 [US3] Criar feedback final de “redação enviada e em análise” em `src/components/feedback/SuccessState.tsx`
-- [ ] T032 [US3] Garantir textos sem reprovação e com tom amigável no fallback e na redação em `src/data/content.ts`, `src/components/essay/ComplementaryEssayIntro.tsx` e `src/components/essay/EssayForm.tsx`
+- [x] T029 [US3] Implementar ramo `score < 5` para levar do resultado à introdução da redação complementar em `src/app/reducer.ts` e `src/app/flow.ts`
+- [x] T030 [US3] Implementar fluxo direto de redação obrigatória ao selecionar cenário/faculdade correspondente em `src/app/App.tsx` e `src/components/modality/ModalitySelection.tsx`
+- [x] T031 [US3] Criar feedback final de “redação enviada e em análise” em `src/components/feedback/SuccessState.tsx`
+- [x] T032 [US3] Garantir textos sem reprovação e com tom amigável no fallback e na redação em `src/data/content.ts`, `src/components/essay/ComplementaryEssayIntro.tsx` e `src/components/essay/EssayForm.tsx`
 
 **Checkpoint**: fallback e redação obrigatória demonstram continuidade natural do processo
 
@@ -105,11 +105,11 @@ description: "Task list for implementing the Triagem Inteligente React prototype
 
 **Independent Test**: No cenário sem redação obrigatória, escolher ENEM ou diploma, preencher campos mínimos e chegar ao estado de avanço para documentos
 
-- [ ] T033 [P] [US4] Criar formulário mínimo de ENEM em `src/components/forms/EnemForm.tsx`
-- [ ] T034 [P] [US4] Criar formulário mínimo de diploma em `src/components/forms/DegreeForm.tsx`
-- [ ] T035 [US4] Implementar ações de envio simulado para ENEM e diploma no reducer em `src/app/reducer.ts`
-- [ ] T036 [US4] Conectar rotas internas de ENEM e diploma no `App.tsx` e em `src/app/flow.ts`
-- [ ] T037 [US4] Reaproveitar estado final positivo para avanço a documentos após ENEM ou diploma em `src/components/feedback/SuccessState.tsx`
+- [x] T033 [P] [US4] Criar formulário mínimo de ENEM em `src/components/forms/EnemForm.tsx`
+- [x] T034 [P] [US4] Criar formulário mínimo de diploma em `src/components/forms/DegreeForm.tsx`
+- [x] T035 [US4] Implementar ações de envio simulado para ENEM e diploma no reducer em `src/app/reducer.ts`
+- [x] T036 [US4] Conectar rotas internas de ENEM e diploma no `App.tsx` e em `src/app/flow.ts`
+- [x] T037 [US4] Reaproveitar estado final positivo para avanço a documentos após ENEM ou diploma em `src/components/feedback/SuccessState.tsx`
 
 **Checkpoint**: caminhos alternativos funcionam com forms mínimos
 
@@ -119,7 +119,7 @@ description: "Task list for implementing the Triagem Inteligente React prototype
 
 **Purpose**: Melhorar apresentação, loading, reset e validação manual
 
-- [ ] T038 [P] Criar overlay ou estado visual de loading curto para envios e processamentos em `src/components/feedback/LoadingOverlay.tsx`
+- [x] T038 [P] Criar overlay ou estado visual de loading curto para envios e processamentos em `src/components/feedback/LoadingOverlay.tsx`
 - [ ] T039 Integrar loading simulado por timeout nos envios de prova, redação, ENEM e diploma em `src/app/reducer.ts` e `src/app/App.tsx`
 - [ ] T040 Implementar estado final consolidado com mensagem de avanço para documentos e botão de reinício em `src/components/feedback/SuccessState.tsx`
 - [ ] T041 Implementar ação de reinício completo do protótipo em `src/app/reducer.ts` e conexão no `App.tsx`

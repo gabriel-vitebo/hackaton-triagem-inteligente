@@ -17,6 +17,10 @@ import { objectiveQuestions } from "../data/objectiveQuestions";
 import { TestResult } from "../components/objective-test/TestResult";
 import { ComplementaryEssayIntro } from "../components/essay/ComplementaryEssayIntro";
 import { EssayForm } from "../components/essay/EssayForm";
+import { EnemForm } from "../components/forms/EnemForm";
+import { DegreeForm } from "../components/forms/DegreeForm";
+import { SuccessState } from "../components/feedback/SuccessState";
+import { LoadingOverlay } from "../components/feedback/LoadingOverlay";
 
 function PendingFeaturePanel({
   title,
@@ -154,9 +158,7 @@ export function App() {
     content = (
       <EssayForm
         mode={mode}
-        onSubmit={() =>
-          dispatch({ type: "submit_essay_success" })
-        }
+        onSubmit={() => dispatch({ type: "submit_essay_success" })}
       />
     );
   }
@@ -165,29 +167,27 @@ export function App() {
     const finalMessage = finalStatusMessages[state.finalStatus];
 
     content = (
-      <PendingFeaturePanel
+      <SuccessState
         title={finalMessage.title}
-        onBack={() => dispatch({ type: "restart_flow" })}
-      >
-        {finalMessage.description}
-      </PendingFeaturePanel>
+        description={finalMessage.description}
+        ctaLabel="Reiniciar demonstracao"
+        onReset={() => dispatch({ type: "restart_flow" })}
+      />
     );
   }
 
   if (state.currentStep === "enem_form") {
     content = (
-      <PendingFeaturePanel
-        title="Fluxo ENEM"
-        onBack={() => dispatch({ type: "back_to_selection" })}
+      <EnemForm
+        onSubmit={() => dispatch({ type: "submit_enem_success" })}
       />
     );
   }
 
   if (state.currentStep === "degree_form") {
     content = (
-      <PendingFeaturePanel
-        title="Fluxo portador de diploma"
-        onBack={() => dispatch({ type: "back_to_selection" })}
+      <DegreeForm
+        onSubmit={() => dispatch({ type: "submit_degree_success" })}
       />
     );
   }
@@ -200,6 +200,7 @@ export function App() {
     >
       {showStepper && <AdmissionStepper currentPhase={state.admissionPhase} />}
       {content}
+      {state.submissionStatus === "loading" && <LoadingOverlay />}
     </AppShell>
   );
 }

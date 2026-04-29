@@ -46,6 +46,12 @@ export const flowMessages = {
   essaySubmittedTitle: "Redacao enviada",
   essaySubmittedBody:
     "Sua redacao foi recebida e agora esta em analise pela instituicao.",
+  enemSubmittedTitle: "Dados do ENEM enviados",
+  enemSubmittedBody:
+    "A simulacao foi concluida e voce pode seguir para a etapa de documentos.",
+  degreeSubmittedTitle: "Diploma enviado",
+  degreeSubmittedBody:
+    "Os dados mockados do diploma foram recebidos e o fluxo pode avancar.",
   pendingFeatureTitle: "Etapa em construcao",
   pendingFeatureBody:
     "Este fluxo sera implementado nas proximas tasks, mantendo o estado e a navegacao ja preparados.",
