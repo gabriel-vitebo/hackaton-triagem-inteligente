@@ -22,8 +22,8 @@ export function AdmissionStepper({ currentPhase }: AdmissionStepperProps) {
               className={[
                 "rounded-2xl border px-4 py-3 text-sm font-medium transition",
                 isActive
-                  ? "border-emerald-400/40 bg-emerald-400/10 text-emerald-200"
-                  : "border-white/10 bg-white/5 text-slate-400",
+                  ? "selected-state text-qb-primary-darkest"
+                  : "border-qb-primary/10 bg-white/80 text-qb-primary-dark",
               ].join(" ")}
             >
               {step}

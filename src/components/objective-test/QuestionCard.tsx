@@ -17,13 +17,13 @@ export function QuestionCard({
 }: QuestionCardProps) {
   return (
     <section className="panel-card p-8">
-      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">
+      <p className="section-kicker">
         Pergunta {questionNumber} de {totalQuestions}
       </p>
-      <p className="mt-2 text-sm text-slate-400">
+      <p className="text-muted mt-2 text-sm">
         {question.category.replace("_", " ")}
       </p>
-      <h2 className="mt-4 text-2xl font-bold leading-tight text-white">
+      <h2 className="title-strong mt-4 text-2xl font-bold leading-tight">
         {question.prompt}
       </h2>
 
@@ -39,11 +39,11 @@ export function QuestionCard({
               className={[
                 "rounded-2xl border px-4 py-4 text-left transition",
                 isSelected
-                  ? "border-emerald-400/40 bg-emerald-400/10 text-white"
-                  : "border-white/10 bg-white/5 text-slate-200 hover:bg-white/10",
+                  ? "selected-state text-qb-primary-darkest"
+                  : "border-qb-primary/10 bg-white/80 text-qb-primary-darkest hover:border-qb-primary/30 hover:bg-qb-primary-lightest",
               ].join(" ")}
             >
-              <span className="mr-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-slate-900/70 text-sm font-bold text-emerald-200">
+              <span className="mr-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-qb-primary-light text-sm font-bold text-qb-primary-dark">
                 {option.label}
               </span>
               <span className="text-sm leading-6">{option.text}</span>

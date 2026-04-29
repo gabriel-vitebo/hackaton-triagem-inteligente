@@ -16,16 +16,16 @@ export function ScenarioSelector({
           key={scenario.id}
           type="button"
           onClick={() => onSelectScenario(scenario.id)}
-          className="panel-card text-left p-7 transition hover:-translate-y-1 hover:border-emerald-400/30 hover:bg-emerald-400/5"
+          className="panel-card selectable-card text-left p-7"
         >
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">
+          <p className="section-kicker">
             {scenario.requiresEssay ? "Redacao obrigatoria" : "Prova objetiva liberada"}
           </p>
-          <h2 className="mt-4 text-2xl font-bold text-white">{scenario.name}</h2>
-          <p className="mt-3 text-sm leading-6 text-slate-300">
+          <h2 className="title-strong mt-4 text-2xl font-bold">{scenario.name}</h2>
+          <p className="text-soft mt-3 text-sm leading-6">
             {scenario.heroMessage}
           </p>
-          <span className="mt-6 inline-flex text-sm font-semibold text-emerald-200">
+          <span className="mt-6 inline-flex text-sm font-semibold text-qb-primary">
             Escolher este cenario
           </span>
         </button>

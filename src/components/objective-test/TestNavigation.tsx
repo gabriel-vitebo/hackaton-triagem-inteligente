@@ -23,7 +23,7 @@ export function TestNavigation({
           type="button"
           onClick={onPrevious}
           disabled={isFirstQuestion}
-          className="rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40"
+          className="btn-secondary disabled:cursor-not-allowed disabled:opacity-40"
         >
           Anterior
         </button>
@@ -31,7 +31,7 @@ export function TestNavigation({
           type="button"
           onClick={onNext}
           disabled={isLastQuestion}
-          className="rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-40"
+          className="btn-secondary disabled:cursor-not-allowed disabled:opacity-40"
         >
           Proxima
         </button>
@@ -40,7 +40,7 @@ export function TestNavigation({
       <button
         type="button"
         onClick={onFinish}
-        className="rounded-2xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
+        className="btn-primary"
       >
         Finalizar prova
       </button>
