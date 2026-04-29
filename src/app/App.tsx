@@ -22,6 +22,8 @@ import { DegreeForm } from "../components/forms/DegreeForm";
 import { SuccessState } from "../components/feedback/SuccessState";
 import { LoadingOverlay } from "../components/feedback/LoadingOverlay";
 
+const SIMULATED_LOADING_MS = 900;
+
 function PendingFeaturePanel({
   title,
   onBack,
@@ -60,6 +62,29 @@ export function App() {
   );
 
   const showStepper = state.currentStep !== "home";
+
+  const simulateSubmission = (
+    startAction:
+      | "submit_enem_start"
+      | "submit_degree_start"
+      | "submit_essay_start",
+    successAction:
+      | "submit_enem_success"
+      | "submit_degree_success"
+      | "submit_essay_success",
+  ) => {
+    dispatch({ type: startAction });
+    window.setTimeout(() => {
+      dispatch({ type: successAction });
+    }, SIMULATED_LOADING_MS);
+  };
+
+  const simulateTestCorrection = () => {
+    dispatch({ type: "start_test_correction" });
+    window.setTimeout(() => {
+      dispatch({ type: "finish_test", questions: objectiveQuestions });
+    }, SIMULATED_LOADING_MS);
+  };
 
   let content = (
     <section className="panel-card p-8">
@@ -121,9 +146,7 @@ export function App() {
         onElapsedChange={(seconds) =>
           dispatch({ type: "set_elapsed_seconds", seconds })
         }
-        onFinish={() =>
-          dispatch({ type: "finish_test", questions: objectiveQuestions })
-        }
+        onFinish={simulateTestCorrection}
       />
     );
   }
@@ -158,7 +181,9 @@ export function App() {
     content = (
       <EssayForm
         mode={mode}
-        onSubmit={() => dispatch({ type: "submit_essay_success" })}
+        onSubmit={() =>
+          simulateSubmission("submit_essay_start", "submit_essay_success")
+        }
       />
     );
   }
@@ -179,7 +204,9 @@ export function App() {
   if (state.currentStep === "enem_form") {
     content = (
       <EnemForm
-        onSubmit={() => dispatch({ type: "submit_enem_success" })}
+        onSubmit={() =>
+          simulateSubmission("submit_enem_start", "submit_enem_success")
+        }
       />
     );
   }
@@ -187,7 +214,9 @@ export function App() {
   if (state.currentStep === "degree_form") {
     content = (
       <DegreeForm
-        onSubmit={() => dispatch({ type: "submit_degree_success" })}
+        onSubmit={() =>
+          simulateSubmission("submit_degree_start", "submit_degree_success")
+        }
       />
     );
   }
@@ -200,7 +229,9 @@ export function App() {
     >
       {showStepper && <AdmissionStepper currentPhase={state.admissionPhase} />}
       {content}
-      {state.submissionStatus === "loading" && <LoadingOverlay />}
+      {state.submissionStatus === "loading" && (
+        <LoadingOverlay label="Organizando sua proxima etapa..." />
+      )}
     </AppShell>
   );
 }

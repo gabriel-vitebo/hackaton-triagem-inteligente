@@ -29,6 +29,7 @@ export type FlowAction =
   | { type: "select_scenario"; scenarioId: string }
   | { type: "select_modality"; modalityId: ModalityId }
   | { type: "start_objective_test" }
+  | { type: "start_test_correction" }
   | { type: "set_current_question"; index: number }
   | { type: "answer_question"; questionId: string; optionId: string }
   | { type: "set_elapsed_seconds"; seconds: number }
@@ -87,6 +88,7 @@ export function flowReducer(state: FlowState, action: FlowAction): FlowState {
       return applyStep(
         {
           ...state,
+          submissionStatus: "idle",
           test: {
             ...state.test,
             startedAt: Date.now(),
@@ -95,6 +97,12 @@ export function flowReducer(state: FlowState, action: FlowAction): FlowState {
         },
         "objective_test",
       );
+
+    case "start_test_correction":
+      return {
+        ...state,
+        submissionStatus: "loading",
+      };
 
     case "set_current_question":
       return {
@@ -144,6 +152,7 @@ export function flowReducer(state: FlowState, action: FlowAction): FlowState {
                 : flowMessages.fallbackBody,
           },
           finalStatus: "idle",
+          submissionStatus: "idle",
         },
         "objective_result",
       );
@@ -161,6 +170,7 @@ export function flowReducer(state: FlowState, action: FlowAction): FlowState {
             state.result.nextAction === "documents"
               ? "ready_for_documents"
               : state.finalStatus,
+          submissionStatus: "idle",
         },
         getStepAfterResult(state.result.nextAction),
       );

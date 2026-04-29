@@ -26,13 +26,19 @@ export function SuccessState({
         de backend.
       </div>
 
-      <button
-        type="button"
-        onClick={onReset}
-        className="mt-8 rounded-2xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
-      >
-        {ctaLabel}
-      </button>
+      <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-sm leading-6 text-slate-300">
+          Menos espera, menos dependencia de redacao e uma jornada de admissao
+          mais rapida.
+        </p>
+        <button
+          type="button"
+          onClick={onReset}
+          className="rounded-2xl bg-emerald-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-emerald-300"
+        >
+          {ctaLabel}
+        </button>
+      </div>
     </section>
   );
 }

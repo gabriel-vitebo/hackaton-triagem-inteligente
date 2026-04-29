@@ -120,13 +120,13 @@ description: "Task list for implementing the Triagem Inteligente React prototype
 **Purpose**: Melhorar apresentação, loading, reset e validação manual
 
 - [x] T038 [P] Criar overlay ou estado visual de loading curto para envios e processamentos em `src/components/feedback/LoadingOverlay.tsx`
-- [ ] T039 Integrar loading simulado por timeout nos envios de prova, redação, ENEM e diploma em `src/app/reducer.ts` e `src/app/App.tsx`
-- [ ] T040 Implementar estado final consolidado com mensagem de avanço para documentos e botão de reinício em `src/components/feedback/SuccessState.tsx`
-- [ ] T041 Implementar ação de reinício completo do protótipo em `src/app/reducer.ts` e conexão no `App.tsx`
-- [ ] T042 Refinar responsividade, espaçamento, cards, botões e hierarquia visual em `src/styles/globals.css`, `src/styles/tokens.css` e componentes visuais
-- [ ] T043 Revisar todos os textos para reforçar “menos espera”, “menos dependência de redação” e “admissão mais rápida” em `src/data/content.ts`
-- [ ] T044 Criar checklist de testes manuais obrigatórios em `specs/001-triagem-inteligente/quickstart.md`
-- [ ] T045 Executar validação manual do fluxo completo e registrar ajustes finais em `specs/001-triagem-inteligente/quickstart.md`
+- [x] T039 Integrar loading simulado por timeout nos envios de prova, redação, ENEM e diploma em `src/app/reducer.ts` e `src/app/App.tsx`
+- [x] T040 Implementar estado final consolidado com mensagem de avanço para documentos e botão de reinício em `src/components/feedback/SuccessState.tsx`
+- [x] T041 Implementar ação de reinício completo do protótipo em `src/app/reducer.ts` e conexão no `App.tsx`
+- [x] T042 Refinar responsividade, espaçamento, cards, botões e hierarquia visual em `src/styles/globals.css`, `src/styles/tokens.css` e componentes visuais
+- [x] T043 Revisar todos os textos para reforçar “menos espera”, “menos dependência de redação” e “admissão mais rápida” em `src/data/content.ts`
+- [x] T044 Criar checklist de testes manuais obrigatórios em `specs/001-triagem-inteligente/quickstart.md`
+- [x] T045 Executar validação manual do fluxo completo e registrar ajustes finais em `specs/001-triagem-inteligente/quickstart.md`
 
 ---
 

@@ -50,7 +50,20 @@
     background: var(--color-panel);
     box-shadow: var(--shadow-panel);
     border-radius: var(--radius-panel);
-    @apply backdrop-blur-sm;
+    @apply backdrop-blur-sm transition;
+  }
+
+  .surface-highlight {
+    background:
+      linear-gradient(135deg, rgba(16, 185, 129, 0.08), transparent 45%),
+      var(--color-panel-strong);
+  }
+
+  .soft-grid {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 24px 24px;
   }
 
   .eyebrow-badge {
