@@ -1,36 +1,137 @@
-export function App() {
+import { useMemo, useReducer } from "react";
+import { flowMessages, homeCopy, prototypeBadgeLabel } from "../data/content";
+import { getScenarioById, scenarios } from "../data/scenarios";
+import { flowReducer, initialFlowState } from "./reducer";
+import { AppShell } from "../components/layout/AppShell";
+import { AdmissionStepper } from "../components/layout/AdmissionStepper";
+import { ScenarioSelector } from "../components/scenario/ScenarioSelector";
+import { ModalitySelection } from "../components/modality/ModalitySelection";
+import { ObjectiveTestIntro } from "../components/objective-test/ObjectiveTestIntro";
+
+function PendingFeaturePanel({
+  title,
+  onBack,
+}: {
+  title: string;
+  onBack: () => void;
+}) {
   return (
-    <main className="min-h-screen text-slate-50">
-      <div className="app-container">
-        <span className="eyebrow-badge">Prototipo em setup</span>
-        <h1 className="mt-6 text-5xl font-black tracking-tight text-white">
-          Triagem Inteligente
-        </h1>
-        <p className="mt-4 max-w-2xl text-lg text-slate-300">
-          Base React + TypeScript + Tailwind pronta para iniciar a implementacao
-          do fluxo de admissao.
-        </p>
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
-          <section className="panel-card p-6">
-            <p className="text-sm font-medium text-slate-400">Stack</p>
-            <p className="mt-2 text-xl font-semibold text-white">
-              React + Tailwind
-            </p>
-          </section>
-          <section className="panel-card p-6">
-            <p className="text-sm font-medium text-slate-400">Objetivo</p>
-            <p className="mt-2 text-xl font-semibold text-white">
-              Fluxo unico em memoria
-            </p>
-          </section>
-          <section className="panel-card p-6">
-            <p className="text-sm font-medium text-slate-400">Status</p>
-            <p className="mt-2 text-xl font-semibold text-white">
-              Setup concluido
-            </p>
-          </section>
-        </div>
+    <section className="panel-card p-8">
+      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-amber-300">
+        Proxima etapa
+      </p>
+      <h2 className="mt-4 text-3xl font-bold text-white">{title}</h2>
+      <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-300">
+        {flowMessages.pendingFeatureBody}
+      </p>
+      <button
+        type="button"
+        onClick={onBack}
+        className="mt-6 inline-flex rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+      >
+        Voltar para modalidades
+      </button>
+    </section>
+  );
+}
+
+export function App() {
+  const [state, dispatch] = useReducer(flowReducer, initialFlowState);
+
+  const selectedScenario = useMemo(
+    () => getScenarioById(state.scenarioId),
+    [state.scenarioId],
+  );
+
+  const showStepper = state.currentStep !== "home";
+
+  let content = (
+    <section className="panel-card p-8">
+      <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-300">
+        {homeCopy.scenariosTitle}
+      </p>
+      <h2 className="mt-4 text-3xl font-bold text-white">{homeCopy.title}</h2>
+      <p className="mt-4 max-w-3xl text-sm leading-6 text-slate-300">
+        {homeCopy.scenariosBody}
+      </p>
+      <p className="mt-3 max-w-3xl text-sm leading-6 text-emerald-200">
+        {homeCopy.benefit}
+      </p>
+      <div className="mt-8">
+        <ScenarioSelector
+          scenarios={scenarios}
+          onSelectScenario={(scenarioId) =>
+            dispatch({ type: "select_scenario", scenarioId })
+          }
+        />
       </div>
-    </main>
+    </section>
+  );
+
+  if (state.currentStep === "selection" && selectedScenario) {
+    content = (
+      <ModalitySelection
+        scenario={selectedScenario}
+        onSelectModality={(modalityId) =>
+          dispatch({ type: "select_modality", modalityId })
+        }
+      />
+    );
+  }
+
+  if (state.currentStep === "objective_intro") {
+    content = (
+      <ObjectiveTestIntro
+        onStart={() => dispatch({ type: "start_objective_test" })}
+        onBack={() => dispatch({ type: "back_to_selection" })}
+      />
+    );
+  }
+
+  if (state.currentStep === "objective_test") {
+    content = (
+      <PendingFeaturePanel
+        title="Fluxo da prova objetiva"
+        onBack={() => dispatch({ type: "back_to_selection" })}
+      />
+    );
+  }
+
+  if (state.currentStep === "essay_form") {
+    content = (
+      <PendingFeaturePanel
+        title="Fluxo de redacao"
+        onBack={() => dispatch({ type: "back_to_selection" })}
+      />
+    );
+  }
+
+  if (state.currentStep === "enem_form") {
+    content = (
+      <PendingFeaturePanel
+        title="Fluxo ENEM"
+        onBack={() => dispatch({ type: "back_to_selection" })}
+      />
+    );
+  }
+
+  if (state.currentStep === "degree_form") {
+    content = (
+      <PendingFeaturePanel
+        title="Fluxo portador de diploma"
+        onBack={() => dispatch({ type: "back_to_selection" })}
+      />
+    );
+  }
+
+  return (
+    <AppShell
+      badge={prototypeBadgeLabel}
+      title={homeCopy.title}
+      subtitle={homeCopy.subtitle}
+    >
+      {showStepper && <AdmissionStepper currentPhase={state.admissionPhase} />}
+      {content}
+    </AppShell>
   );
 }

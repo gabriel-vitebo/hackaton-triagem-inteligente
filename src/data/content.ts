@@ -27,6 +27,9 @@ export const homeCopy = {
     "Uma proposta para acelerar a admissao digital com menos dependencia de redacao como etapa principal.",
   benefit:
     "Menos espera, menos custo operacional e uma jornada mais fluida para o candidato.",
+  scenariosTitle: "Escolha um cenario mockado para a demonstracao",
+  scenariosBody:
+    "Compare uma instituicao com redacao obrigatoria e outra que permite prova objetiva como caminho principal.",
 };
 
 export const flowMessages = {
@@ -43,6 +46,9 @@ export const flowMessages = {
   essaySubmittedTitle: "Redacao enviada",
   essaySubmittedBody:
     "Sua redacao foi recebida e agora esta em analise pela instituicao.",
+  pendingFeatureTitle: "Etapa em construcao",
+  pendingFeatureBody:
+    "Este fluxo sera implementado nas proximas tasks, mantendo o estado e a navegacao ja preparados.",
 };
 
 export const finalStatusMessages: Record<

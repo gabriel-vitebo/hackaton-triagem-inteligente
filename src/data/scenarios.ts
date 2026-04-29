@@ -51,3 +51,7 @@ export const scenarios: ScenarioDefinition[] = [
       "Neste cenario, a prova objetiva reduz espera e evita usar redacao como etapa inicial.",
   },
 ];
+
+export function getScenarioById(scenarioId: string | null) {
+  return scenarios.find((scenario) => scenario.id === scenarioId) ?? null;
+}
