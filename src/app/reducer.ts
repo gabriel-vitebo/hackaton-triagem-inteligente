@@ -1,9 +1,10 @@
+import { flowMessages, objectiveTestCutScore } from "../data/content";
+import type { ObjectiveQuestion } from "../types/flow";
 import { getAdmissionPhaseForStep, getStepAfterResult, getStepFromModality } from "./flow";
 import type {
   CurrentStep,
   FlowState,
   ModalityId,
-  ResultNextAction,
 } from "../types/flow";
 
 const baseTestState = {
@@ -31,7 +32,8 @@ export type FlowAction =
   | { type: "set_current_question"; index: number }
   | { type: "answer_question"; questionId: string; optionId: string }
   | { type: "set_elapsed_seconds"; seconds: number }
-  | { type: "finish_test"; score: number; nextAction: ResultNextAction; message: string }
+  | { type: "finish_test"; questions: ObjectiveQuestion[] }
+  | { type: "continue_after_result" }
   | { type: "submit_enem_start" }
   | { type: "submit_enem_success" }
   | { type: "submit_degree_start" }
@@ -48,6 +50,15 @@ function applyStep(state: FlowState, step: CurrentStep): FlowState {
     currentStep: step,
     admissionPhase: getAdmissionPhaseForStep(step),
   };
+}
+
+function calculateScore(
+  answers: Record<string, string>,
+  questions: ObjectiveQuestion[],
+): number {
+  return questions.reduce((total, question) => {
+    return total + (answers[question.id] === question.correctOptionId ? 1 : 0);
+  }, 0);
 }
 
 export function flowReducer(state: FlowState, action: FlowAction): FlowState {
@@ -116,24 +127,43 @@ export function flowReducer(state: FlowState, action: FlowAction): FlowState {
       };
 
     case "finish_test": {
-      const nextStep = getStepAfterResult(action.nextAction);
+      const score = calculateScore(state.test.answers, action.questions);
+      const nextAction =
+        score >= objectiveTestCutScore ? "documents" : "complementary_essay";
+
       return applyStep(
         {
           ...state,
           result: {
-            score: action.score,
-            passed: action.nextAction === "documents",
-            nextAction: action.nextAction,
-            message: action.message,
+            score,
+            passed: nextAction === "documents",
+            nextAction,
+            message:
+              nextAction === "documents"
+                ? flowMessages.approvedBody
+                : flowMessages.fallbackBody,
           },
-          finalStatus:
-            action.nextAction === "documents"
-              ? "ready_for_documents"
-              : "idle",
+          finalStatus: "idle",
         },
-        nextStep,
+        "objective_result",
       );
     }
+
+    case "continue_after_result":
+      if (!state.result) {
+        return state;
+      }
+
+      return applyStep(
+        {
+          ...state,
+          finalStatus:
+            state.result.nextAction === "documents"
+              ? "ready_for_documents"
+              : state.finalStatus,
+        },
+        getStepAfterResult(state.result.nextAction),
+      );
 
     case "submit_enem_start":
     case "submit_degree_start":

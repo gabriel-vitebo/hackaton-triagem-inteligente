@@ -22,10 +22,10 @@ description: "Task list for implementing the Triagem Inteligente React prototype
 
 **Purpose**: Bootstrap do app React com base mínima executável
 
-- [ ] T001 Inicializar projeto Vite React + TypeScript em `package.json`, `tsconfig.json`, `vite.config.ts`, `index.html` e `src/main.tsx`
-- [ ] T002 Criar estrutura base de diretórios conforme o plano em `src/app/`, `src/components/`, `src/data/`, `src/styles/` e `src/types/`
-- [ ] T003 [P] Criar estilos globais e tokens visuais iniciais em `src/styles/globals.css` e `src/styles/tokens.css`
-- [ ] T004 Garantir ponto de entrada executável com app mínimo em `src/app/App.tsx` e import em `src/main.tsx`
+- [x] T001 Inicializar projeto Vite React + TypeScript em `package.json`, `tsconfig.json`, `vite.config.ts`, `index.html` e `src/main.tsx`
+- [x] T002 Criar estrutura base de diretórios conforme o plano em `src/app/`, `src/components/`, `src/data/`, `src/styles/` e `src/types/`
+- [x] T003 [P] Criar estilos globais e tokens visuais iniciais em `src/styles/globals.css` e `src/styles/tokens.css`
+- [x] T004 Garantir ponto de entrada executável com app mínimo em `src/app/App.tsx` e import em `src/main.tsx`
 
 ---
 
@@ -33,12 +33,12 @@ description: "Task list for implementing the Triagem Inteligente React prototype
 
 **Purpose**: Dados e estado central que bloqueiam todas as telas
 
-- [ ] T005 [P] Criar tipos centrais do fluxo em `src/types/flow.ts`
-- [ ] T006 [P] Criar mocks de cenários, modalidades, etapas, mensagens e nota de corte em `src/data/scenarios.ts` e `src/data/content.ts`
-- [ ] T007 [P] Criar banco mockado de 10 perguntas com alternativas e resposta correta em `src/data/objectiveQuestions.ts`
-- [ ] T008 Criar definição de views, transições e helpers do fluxo em `src/app/flow.ts`
-- [ ] T009 Implementar reducer central com estado em memória e ações do protótipo em `src/app/reducer.ts`
-- [ ] T010 Integrar reducer e estado inicial no shell do app em `src/app/App.tsx`
+- [x] T005 [P] Criar tipos centrais do fluxo em `src/types/flow.ts`
+- [x] T006 [P] Criar mocks de cenários, modalidades, etapas, mensagens e nota de corte em `src/data/scenarios.ts` e `src/data/content.ts`
+- [x] T007 [P] Criar banco mockado de 10 perguntas com alternativas e resposta correta em `src/data/objectiveQuestions.ts`
+- [x] T008 Criar definição de views, transições e helpers do fluxo em `src/app/flow.ts`
+- [x] T009 Implementar reducer central com estado em memória e ações do protótipo em `src/app/reducer.ts`
+- [x] T010 Integrar reducer e estado inicial no shell do app em `src/app/App.tsx`
 
 **Checkpoint**: base pronta para construir histórias sem espalhar estado
 
@@ -50,13 +50,13 @@ description: "Task list for implementing the Triagem Inteligente React prototype
 
 **Independent Test**: Escolher o cenário sem redação obrigatória e confirmar que aparecem ENEM, prova objetiva e diploma, sem redação na entrada
 
-- [ ] T011 [P] [US1] Criar layout principal com estrutura de página e área de conteúdo em `src/components/layout/AppShell.tsx`
-- [ ] T012 [P] [US1] Criar seletor inicial de cenários com dois cards/botões em `src/components/scenario/ScenarioSelector.tsx`
-- [ ] T013 [P] [US1] Criar stepper visual da admissão em `src/components/layout/AdmissionStepper.tsx`
-- [ ] T014 [P] [US1] Criar card reutilizável de modalidade em `src/components/modality/ModalityCard.tsx`
-- [ ] T015 [US1] Criar lista de modalidades condicionada ao cenário em `src/components/modality/ModalitySelection.tsx`
-- [ ] T016 [US1] Conectar `App.tsx` para renderizar home, stepper, badge de protótipo e seleção de modalidade conforme cenário em `src/app/App.tsx`
-- [ ] T017 [US1] Ajustar microcopy de proposta de valor na home e na seleção de modalidade em `src/data/content.ts` e `src/components/modality/ModalitySelection.tsx`
+- [x] T011 [P] [US1] Criar layout principal com estrutura de página e área de conteúdo em `src/components/layout/AppShell.tsx`
+- [x] T012 [P] [US1] Criar seletor inicial de cenários com dois cards/botões em `src/components/scenario/ScenarioSelector.tsx`
+- [x] T013 [P] [US1] Criar stepper visual da admissão em `src/components/layout/AdmissionStepper.tsx`
+- [x] T014 [P] [US1] Criar card reutilizável de modalidade em `src/components/modality/ModalityCard.tsx`
+- [x] T015 [US1] Criar lista de modalidades condicionada ao cenário em `src/components/modality/ModalitySelection.tsx`
+- [x] T016 [US1] Conectar `App.tsx` para renderizar home, stepper, badge de protótipo e seleção de modalidade conforme cenário em `src/app/App.tsx`
+- [x] T017 [US1] Ajustar microcopy de proposta de valor na home e na seleção de modalidade em `src/data/content.ts` e `src/components/modality/ModalitySelection.tsx`
 
 **Checkpoint**: cenário com redação obrigatória e cenário sem redação obrigatória ficam distinguíveis e navegáveis
 
@@ -68,15 +68,15 @@ description: "Task list for implementing the Triagem Inteligente React prototype
 
 **Independent Test**: No cenário sem redação obrigatória, escolher prova objetiva, responder 10 perguntas, obter 5+ acertos e chegar ao estado de avanço para documentos
 
-- [ ] T018 [P] [US2] Criar tela introdutória da prova com regras e CTA em `src/components/objective-test/ObjectiveTestIntro.tsx`
-- [ ] T019 [P] [US2] Criar card de pergunta com alternativas selecionáveis em `src/components/objective-test/QuestionCard.tsx`
-- [ ] T020 [P] [US2] Criar navegação da prova com anterior, próxima e finalizar em `src/components/objective-test/TestNavigation.tsx`
-- [ ] T021 [US2] Implementar container da prova com uma pergunta por vez, progresso e respostas preservadas em `src/components/objective-test/ObjectiveTest.tsx`
-- [ ] T022 [US2] Implementar timer funcional iniciado apenas após clique em iniciar prova em `src/components/objective-test/ObjectiveTest.tsx`
-- [ ] T023 [US2] Implementar regra amigável para impedir finalização com perguntas em branco em `src/components/objective-test/ObjectiveTest.tsx`
-- [ ] T024 [US2] Implementar cálculo de acertos e decisão `score >= 5` no reducer em `src/app/reducer.ts`
-- [ ] T025 [US2] Criar tela de resultado positivo com exibição simples da nota/acertos em `src/components/objective-test/TestResult.tsx`
-- [ ] T026 [US2] Conectar o fluxo de prova e resultado aprovado no `App.tsx` e em `src/app/flow.ts`
+- [x] T018 [P] [US2] Criar tela introdutória da prova com regras e CTA em `src/components/objective-test/ObjectiveTestIntro.tsx`
+- [x] T019 [P] [US2] Criar card de pergunta com alternativas selecionáveis em `src/components/objective-test/QuestionCard.tsx`
+- [x] T020 [P] [US2] Criar navegação da prova com anterior, próxima e finalizar em `src/components/objective-test/TestNavigation.tsx`
+- [x] T021 [US2] Implementar container da prova com uma pergunta por vez, progresso e respostas preservadas em `src/components/objective-test/ObjectiveTest.tsx`
+- [x] T022 [US2] Implementar timer funcional iniciado apenas após clique em iniciar prova em `src/components/objective-test/ObjectiveTest.tsx`
+- [x] T023 [US2] Implementar regra amigável para impedir finalização com perguntas em branco em `src/components/objective-test/ObjectiveTest.tsx`
+- [x] T024 [US2] Implementar cálculo de acertos e decisão `score >= 5` no reducer em `src/app/reducer.ts`
+- [x] T025 [US2] Criar tela de resultado positivo com exibição simples da nota/acertos em `src/components/objective-test/TestResult.tsx`
+- [x] T026 [US2] Conectar o fluxo de prova e resultado aprovado no `App.tsx` e em `src/app/flow.ts`
 
 **Checkpoint**: prova objetiva completa, com timer, navegação e aprovação funcional
 
@@ -88,8 +88,8 @@ description: "Task list for implementing the Triagem Inteligente React prototype
 
 **Independent Test**: No cenário sem redação obrigatória, terminar a prova com menos de 5 acertos e seguir para redação complementar; no cenário com redação obrigatória, abrir redação diretamente
 
-- [ ] T027 [P] [US3] Criar tela intermediária amigável para fallback de redação em `src/components/essay/ComplementaryEssayIntro.tsx`
-- [ ] T028 [P] [US3] Criar formulário de redação com tema mockado, título, texto e envio em `src/components/essay/EssayForm.tsx`
+- [x] T027 [P] [US3] Criar tela intermediária amigável para fallback de redação em `src/components/essay/ComplementaryEssayIntro.tsx`
+- [x] T028 [P] [US3] Criar formulário de redação com tema mockado, título, texto e envio em `src/components/essay/EssayForm.tsx`
 - [ ] T029 [US3] Implementar ramo `score < 5` para levar do resultado à introdução da redação complementar em `src/app/reducer.ts` e `src/app/flow.ts`
 - [ ] T030 [US3] Implementar fluxo direto de redação obrigatória ao selecionar cenário/faculdade correspondente em `src/app/App.tsx` e `src/components/modality/ModalitySelection.tsx`
 - [ ] T031 [US3] Criar feedback final de “redação enviada e em análise” em `src/components/feedback/SuccessState.tsx`

@@ -1,5 +1,10 @@
 import { useMemo, useReducer } from "react";
-import { flowMessages, homeCopy, prototypeBadgeLabel } from "../data/content";
+import {
+  finalStatusMessages,
+  flowMessages,
+  homeCopy,
+  prototypeBadgeLabel,
+} from "../data/content";
 import { getScenarioById, scenarios } from "../data/scenarios";
 import { flowReducer, initialFlowState } from "./reducer";
 import { AppShell } from "../components/layout/AppShell";
@@ -7,13 +12,20 @@ import { AdmissionStepper } from "../components/layout/AdmissionStepper";
 import { ScenarioSelector } from "../components/scenario/ScenarioSelector";
 import { ModalitySelection } from "../components/modality/ModalitySelection";
 import { ObjectiveTestIntro } from "../components/objective-test/ObjectiveTestIntro";
+import { ObjectiveTest } from "../components/objective-test/ObjectiveTest";
+import { objectiveQuestions } from "../data/objectiveQuestions";
+import { TestResult } from "../components/objective-test/TestResult";
+import { ComplementaryEssayIntro } from "../components/essay/ComplementaryEssayIntro";
+import { EssayForm } from "../components/essay/EssayForm";
 
 function PendingFeaturePanel({
   title,
   onBack,
+  children,
 }: {
   title: string;
   onBack: () => void;
+  children?: string;
 }) {
   return (
     <section className="panel-card p-8">
@@ -22,7 +34,7 @@ function PendingFeaturePanel({
       </p>
       <h2 className="mt-4 text-3xl font-bold text-white">{title}</h2>
       <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-300">
-        {flowMessages.pendingFeatureBody}
+        {children ?? flowMessages.pendingFeatureBody}
       </p>
       <button
         type="button"
@@ -90,19 +102,75 @@ export function App() {
 
   if (state.currentStep === "objective_test") {
     content = (
-      <PendingFeaturePanel
-        title="Fluxo da prova objetiva"
+      <ObjectiveTest
+        questions={objectiveQuestions}
+        answers={state.test.answers}
+        currentQuestionIndex={state.test.currentQuestionIndex}
+        startedAt={state.test.startedAt}
+        elapsedSeconds={state.test.elapsedSeconds}
+        onSelectOption={(questionId, optionId) =>
+          dispatch({ type: "answer_question", questionId, optionId })
+        }
+        onChangeQuestion={(index) =>
+          dispatch({ type: "set_current_question", index })
+        }
+        onElapsedChange={(seconds) =>
+          dispatch({ type: "set_elapsed_seconds", seconds })
+        }
+        onFinish={() =>
+          dispatch({ type: "finish_test", questions: objectiveQuestions })
+        }
+      />
+    );
+  }
+
+  if (state.currentStep === "objective_result" && state.result) {
+    content = (
+      <TestResult
+        result={state.result}
+        onContinue={() => dispatch({ type: "continue_after_result" })}
+        onBack={() => dispatch({ type: "back_to_selection" })}
+      />
+    );
+  }
+
+  if (state.currentStep === "essay_intro") {
+    content = (
+      <ComplementaryEssayIntro
+        onContinue={() => dispatch({ type: "go_to_step", step: "essay_form" })}
         onBack={() => dispatch({ type: "back_to_selection" })}
       />
     );
   }
 
   if (state.currentStep === "essay_form") {
+    const mode =
+      selectedScenario?.requiresEssay || state.result?.nextAction === "complementary_essay"
+        ? state.result?.nextAction === "complementary_essay"
+          ? "complementary"
+          : "required"
+        : "required";
+
+    content = (
+      <EssayForm
+        mode={mode}
+        onSubmit={() =>
+          dispatch({ type: "submit_essay_success" })
+        }
+      />
+    );
+  }
+
+  if (state.currentStep === "success") {
+    const finalMessage = finalStatusMessages[state.finalStatus];
+
     content = (
       <PendingFeaturePanel
-        title="Fluxo de redacao"
-        onBack={() => dispatch({ type: "back_to_selection" })}
-      />
+        title={finalMessage.title}
+        onBack={() => dispatch({ type: "restart_flow" })}
+      >
+        {finalMessage.description}
+      </PendingFeaturePanel>
     );
   }
 
