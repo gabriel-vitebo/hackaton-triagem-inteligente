@@ -16,6 +16,12 @@ export const objectiveTestSummary = {
   totalQuestions: 10,
   instantResultLabel: "Resultado imediato",
   timerRuleLabel: "Tempo comeca ao iniciar",
+  demoRuleLabel:
+    "Modo prototipo: responda 1 questao para simular etapa complementar ou 2 questoes para simular aprovacao.",
+  emptyFinishAlert:
+    "Responda pelo menos uma questao para testar o fluxo do prototipo.",
+  demoResultHint:
+    "No prototipo, esta simulacao considera a quantidade de questoes respondidas, nao a correcao real.",
 };
 
 export const essayTheme =

@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { objectiveTestSummary } from "../../data/content";
 import type { ObjectiveQuestion } from "../../types/flow";
 import { QuestionCard } from "./QuestionCard";
 import { TestNavigation } from "./TestNavigation";
@@ -54,17 +55,15 @@ export function ObjectiveTest({
 
   const currentQuestion = questions[currentQuestionIndex];
 
-  const unansweredCount = useMemo(() => {
-    return questions.filter((question) => !answers[question.id]).length;
+  const answeredCount = useMemo(() => {
+    return questions.filter((question) => Boolean(answers[question.id])).length;
   }, [answers, questions]);
 
   const selectedOptionId = answers[currentQuestion.id];
 
   const handleFinish = () => {
-    if (unansweredCount > 0) {
-      setFriendlyAlert(
-        `Faltam ${unansweredCount} pergunta(s) para concluir. Responda todas antes de finalizar.`,
-      );
+    if (answeredCount === 0) {
+      setFriendlyAlert(objectiveTestSummary.emptyFinishAlert);
       return;
     }
 
@@ -96,6 +95,10 @@ export function ObjectiveTest({
           {friendlyAlert}
         </div>
       )}
+
+      <div className="status-banner mt-4 text-sm">
+        {objectiveTestSummary.demoRuleLabel}
+      </div>
 
       <TestNavigation
         currentQuestionIndex={currentQuestionIndex}

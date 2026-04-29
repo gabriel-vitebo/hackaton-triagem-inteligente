@@ -1,4 +1,4 @@
-import { flowMessages, objectiveTestCutScore } from "../data/content";
+import { flowMessages } from "../data/content";
 import type { ObjectiveQuestion } from "../types/flow";
 import { getAdmissionPhaseForStep, getStepAfterResult, getStepFromModality } from "./flow";
 import type {
@@ -55,11 +55,8 @@ function applyStep(state: FlowState, step: CurrentStep): FlowState {
 
 function calculateScore(
   answers: Record<string, string>,
-  questions: ObjectiveQuestion[],
 ): number {
-  return questions.reduce((total, question) => {
-    return total + (answers[question.id] === question.correctOptionId ? 1 : 0);
-  }, 0);
+  return Object.values(answers).filter(Boolean).length;
 }
 
 export function flowReducer(state: FlowState, action: FlowAction): FlowState {
@@ -135,15 +132,16 @@ export function flowReducer(state: FlowState, action: FlowAction): FlowState {
       };
 
     case "finish_test": {
-      const score = calculateScore(state.test.answers, action.questions);
+      const answeredCount = calculateScore(state.test.answers);
       const nextAction =
-        score >= objectiveTestCutScore ? "documents" : "complementary_essay";
+        answeredCount >= 2 ? "documents" : "complementary_essay";
 
       return applyStep(
         {
           ...state,
           result: {
-            score,
+            score: answeredCount,
+            answeredCount,
             passed: nextAction === "documents",
             nextAction,
             message:

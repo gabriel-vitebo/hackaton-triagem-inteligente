@@ -1,4 +1,4 @@
-import { objectiveTestCutScore } from "../../data/content";
+import { objectiveTestCutScore, objectiveTestSummary } from "../../data/content";
 import type { TestResult as TestResultType } from "../../types/flow";
 
 interface TestResultProps {
@@ -33,9 +33,11 @@ export function TestResult({
       <div className="mt-8 grid gap-4 md:grid-cols-3">
         <div className="metric-card">
           <p className="text-muted text-xs font-semibold uppercase tracking-[0.18em]">
-            Acertos
+            Questoes respondidas
           </p>
-          <p className="title-strong mt-2 text-3xl font-black">{result.score}</p>
+          <p className="title-strong mt-2 text-3xl font-black">
+            {result.answeredCount}
+          </p>
         </div>
         <div className="metric-card">
           <p className="text-muted text-xs font-semibold uppercase tracking-[0.18em]">
@@ -54,6 +56,10 @@ export function TestResult({
           </p>
         </div>
       </div>
+
+      <p className="status-banner mt-6 text-sm">
+        {objectiveTestSummary.demoResultHint}
+      </p>
 
       <div className="mt-8 flex flex-col gap-3 sm:flex-row">
         <button

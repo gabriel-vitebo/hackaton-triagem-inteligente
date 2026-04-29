@@ -22,6 +22,9 @@ export function ObjectiveTestIntro({
         escolha. O tempo so comeca quando voce clicar em iniciar prova e o
         resultado sai na hora.
       </p>
+      <p className="status-banner mt-4 max-w-3xl text-sm">
+        {objectiveTestSummary.demoRuleLabel}
+      </p>
 
       <div className="mt-8 grid gap-4 md:grid-cols-3">
         <div className="metric-card">
