@@ -68,6 +68,7 @@ export interface ObjectiveAnswerSet {
 
 export interface TestResult {
   score: number;
+  answeredCount: number;
   passed: boolean;
   nextAction: ResultNextAction;
   message: string;
